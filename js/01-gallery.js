@@ -1,9 +1,10 @@
 import { galleryItems } from './gallery-items.js';
+// import * as basicLightbox from 'basiclightbox'
 // Change code below this line
 const galleryWripperRef = document.querySelector('.gallery');
 const marKupItemsGallery = makeGalleryOfMarKupElements(galleryItems);
 galleryWripperRef.innerHTML = marKupItemsGallery;
-galleryWripperRef.addEventListener('click', getUrlLargeImg);
+galleryWripperRef.addEventListener('click', openModalImg);
 
 function makeGalleryOfMarKupElements (items) {
     return items.map(({ preview, original, description }) => 
@@ -19,17 +20,27 @@ function makeGalleryOfMarKupElements (items) {
 </div>`).join('');
 };
 
-function getUrlLargeImg(e) {
+function openModalImg(e) {
     e.preventDefault();
     const { target } = e;
     if (target.nodeName !== 'IMG') {
         return;
     };
     const urlLargeImg = target.dataset.source;
-    
-    const instance = basicLightbox.create(`
-    <div class="modal">
-        <img src="${urlLargeImg}" width="1200" height="800"></img>
-    </div>`)
-    instance.show()
+  
+    createModalLightBox(urlLargeImg); 
+};
+
+function createModalLightBox(ref) {
+  const instance = basicLightbox.create(`
+        <img src="${ref}" width="792" height="529"></img>`)
+  instance.show()
+
+  document.addEventListener('keydown', onKeyDown);
+  function onKeyDown({code}) {
+    if (code === 'Escape') {
+    instance.close()
+    document.removeEventListener('keydown', onKeyDown)
+    }
+  }
 };

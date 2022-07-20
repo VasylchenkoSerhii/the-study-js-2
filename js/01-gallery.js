@@ -1,5 +1,4 @@
 import { galleryItems } from './gallery-items.js';
-// import * as basicLightbox from 'basiclightbox'
 // Change code below this line
 const galleryWripperRef = document.querySelector('.gallery');
 const marKupItemsGallery = makeGalleryOfMarKupElements(galleryItems);
@@ -39,7 +38,7 @@ function createModalLightBox(ref) {
   document.addEventListener('keydown', onKeyDown);
   function onKeyDown({code}) {
     if (code === 'Escape') {
-    instance.close()
+      instance.close()
     document.removeEventListener('keydown', onKeyDown)
     }
   }

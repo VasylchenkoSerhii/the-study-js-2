@@ -4,7 +4,7 @@ import { galleryItems } from './gallery-items.js';
 const galleryWripperRef = document.querySelector('.gallery');
 const marKupItemsGallery = makeGalleryOfMarKupElements(galleryItems);
 galleryWripperRef.innerHTML = marKupItemsGallery;
-// galleryWripperRef.addEventListener('click', openModalImg);
+
 
 function makeGalleryOfMarKupElements (items) {
     return items.map(({ preview, original, description }) => 
@@ -18,16 +18,3 @@ const gallery = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
 });
-// function openModalImg(e) {
-//     e.preventDefault();
-//     const { target } = e;
-//     if (target.nodeName !== 'IMG') {
-//         return;
-//     };
-//     createModalLightBox();
-// };
-
-// function createModalLightBox() {
-//     const gallery = new SimpleLightbox('.gallery a');
-
-// };
